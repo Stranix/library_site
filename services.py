@@ -25,7 +25,7 @@ def save_rendered_page(
     os.makedirs(folder, exist_ok=True)
     path_to_save = os.path.join(folder, filename)
 
-    with open(path_to_save, 'w', encoding="utf8") as file:
+    with open(path_to_save, 'w', encoding='utf8') as file:
         file.write(rendered_page)
 
 
@@ -37,7 +37,7 @@ def get_books_from_json_file(filename: str) -> dict:
     :return: словарь с информацией о книгах.
     """
 
-    with open(filename, 'r', encoding='cp1251') as json_file:
+    with open(filename, 'r', encoding='utf8') as json_file:
         books = json.load(json_file)
 
     return books
