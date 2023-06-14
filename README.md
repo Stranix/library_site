@@ -28,7 +28,7 @@ python3 render_website.py --books_per_page 10
 - Создаем страницу в репозитории используя GitHub Pages.  
 Как это сделать можно прочитать в официальной документации [здесь](https://docs.github.com/ru/pages)  
 - Смотрим сайт  
-Пример сайта доступен по [ссылке](https://stranix.github.io/parser_library/pages/index1.html).
+Пример сайта доступен по [ссылке](https://stranix.github.io/library_site/pages/index1.html).
 
 Сгенерированный сайт можно открывать локально, так же выкладывать на любой другой хостинг.
 
