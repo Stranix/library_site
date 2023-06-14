@@ -39,9 +39,9 @@ if __name__ == '__main__':
         server.serve(root='.')
 
     except FileNotFoundError:
-        error_msg = 'Для работы необходим файл с книгами {} в корне проекта'.format(
-                'downloaded_books_info.json'
-        )
+        error_msg = 'Для работы необходим файл с книгами {} в корне проекта'
+        error_msg = error_msg.format('downloaded_books_info.json')
+
         print(error_msg)
         sys.exit()
 
