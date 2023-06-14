@@ -23,6 +23,7 @@ def save_rendered_page(
     """
 
     os.makedirs(folder, exist_ok=True)
+
     path_to_save = os.path.join(folder, filename)
 
     with open(path_to_save, 'w', encoding='utf8') as file:
@@ -55,6 +56,7 @@ def get_jinja_template(filename: str) -> Template:
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
     )
+
     template = env.get_template(filename)
 
     return template
