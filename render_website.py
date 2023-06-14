@@ -8,20 +8,35 @@ import services
 
 
 def create_arg_parser():
-    description = 'Генерируем веб версию для парсера ' \
-                  'https://github.com/Stranix/parser_library '
-    epilog = """
-    В качестве хостинга используем github pages
-    """
+    description = (
+        'Генерируем веб версию для парсера'
+        'https://github.com/Stranix/parser_library'
+    )
+    epilog = 'В качестве хостинга используем github pages'
 
     arg_parser = argparse.ArgumentParser(
         description=description,
         epilog=epilog
     )
 
-    arg_parser.add_argument('--books_per_page', '-bpp', default=20, metavar='', type=int,
-                            help='''количество книг на страницу сайта (
-                            пагинация). По умолчанию ровно 20 книг'''
+    arg_parser.add_argument('--books_per_page', '-bpp', default=20, metavar='',
+                            type=int,
+                            help="""количество книг на страницу сайта. 
+                            По умолчанию ровно 20 книг""",
+                            )
+
+    arg_parser.add_argument('--template', '-t',
+                            default='templates/template.html', metavar='',
+                            type=str,
+                            help="""Полный путь до базового шаблона. 
+                            По умолчанию templates/template.html""",
+                            )
+
+    arg_parser.add_argument('--books', '-b',
+                            default='downloaded_books_info.json',
+                            metavar='', type=str,
+                            help="""Путь до базового шаблона. 
+                            По умолчанию downloaded_books_info.json""",
                             )
 
     return arg_parser
@@ -34,14 +49,16 @@ def on_reload():
     """
     parser = create_arg_parser()
     args = parser.parse_args()
-
     books_per_page = args.books_per_page
-    template = services.get_jinja_template('templates/template.html')
+    template_path = args.template
+    book_descriptions = args.books
+
+    template = services.get_jinja_template(template_path)
 
     chunked_books = list(
         more_itertools.chunked(
-            services.get_books_from_json_file('downloaded_books_info.json'),
-            books_per_page
+            services.get_books_from_json_file(book_descriptions),
+            books_per_page,
         )
     )
 
@@ -51,7 +68,7 @@ def on_reload():
         rendered_page = template.render(
             books=books,
             books_count=books_count,
-            current_page=page
+            current_page=page,
         )
 
         services.save_rendered_page(f'index{page}.html', rendered_page)

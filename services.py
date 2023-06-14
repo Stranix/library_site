@@ -1,12 +1,10 @@
 import os
 import json
 
-from jinja2 import (
-    Environment,
-    FileSystemLoader,
-    select_autoescape,
-    Template
-)
+from jinja2 import Template
+from jinja2 import Environment
+from jinja2 import FileSystemLoader
+from jinja2 import select_autoescape
 
 
 def save_rendered_page(

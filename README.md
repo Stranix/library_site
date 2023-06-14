@@ -20,7 +20,12 @@ pip install -r requirements.txt
 python3 render_website.py
 ```
 Локальный сайт доступен по адресу: [http://127.0.0.1:5500/](http://127.0.0.1:5500/)  
-Количество книг на странице задается через параметр  `--books_per_page`. По Значение параметра ровно `20`.  
+
+## Аргументы `render_website.py`
+- `--books_per_page`, `-bpp` -- Количество книг на страницу сайта. По умолчанию ровно `20` книг.
+- `--template`, `-t`, - Полный путь до базового шаблона. По умолчанию `templates/template.html`.
+- `--books`, `-b` - Путь до базового шаблона. По умолчанию `downloaded_books_info.json`.  
+
 Пример:
 ```shell
 python3 render_website.py --books_per_page 10
@@ -32,6 +37,23 @@ python3 render_website.py --books_per_page 10
 
 Сгенерированный сайт можно открывать локально, так же выкладывать на любой другой хостинг.
 
+## Формат `downloaded_books_info.json`
+```json
+[
+  {
+        "title": "Алиби",
+        "author": "ИВАНОВ Сергей",
+        "genres": [
+            "Научная фантастика",
+            "Прочие Детективы"
+        ],
+        "book_saved_path": "media/books/239_Алиби.txt",
+        "poster_saved_path": "media/images/239.jpg"
+    }
+]
+```
+
+*`JSON` и `media` файлы можно получить воспользовавшись парсером по [ссылке](https://github.com/Stranix/parser_library)*
 
 ## Цель проекта
 
